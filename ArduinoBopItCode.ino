@@ -13,6 +13,10 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 Adafruit_MMA8451 mma = Adafruit_MMA8451();
 
+// define the thresholds for the acceleration and the slide switch for those inputs
+int thresholdAcceleration = 1;
+int thresholdSlideSwitch = 10;
+
 // pick a random song
 
 // there are three songs, randomly choose a song to play out of the three possible songs
@@ -231,14 +235,24 @@ void loop() {
       int slidState = 0;
       pushedButtonState = digitalRead(button2Pin);
       //spunState = digitalRead(button3Pin);
-      slidState = digitalRead(button4Pin);
+
+      // reading the slide switch
+      currentSlidState = analogRead(button4Pin);
+
+      if abs(currentSlidState - slidStatePrevious) > thresholdSlideSwitch {
+        slidState = HIGH;
+      }
+
+      // update the previousSlidState
+      previousSlidState = currentSlidState;
+      
 
       // for the spinning, detect if the X, Y, or Z acceleration exceeds the threshold, if so, a spun has been detected
       mma.read();
       sensors_event_t event;
       mma.getEvent(&event);
 
-      if (event.acceleration.x > 1 || event.acceleration.y > 1 || event.acceleration.z > 1) {
+      if (event.acceleration.x > thresholdAcceleration || event.acceleration.y > thresholdAcceleration || event.acceleration.z > thresholdAcceleration) {
         // a spin has been detected if the X, Y, or Z acceleration exceeds the threshold
         spunState = HIGH;
       }
