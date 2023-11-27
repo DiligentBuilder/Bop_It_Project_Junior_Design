@@ -1,3 +1,8 @@
+#include <SD.h> // need to include the SD library
+#define SD_ChipSelectPin 4 //connect pin 4 of arduino to cs pin of sd card
+#include <TMRpcm.h> //Arduino library for asynchronous playback of PCM/WAV files
+#include <SPI.h> //  need to include the SPI library
+
 #include <Wire.h>
 #include <Adafruit_MMA8451.h>
 #include <Adafruit_Sensor.h>
@@ -7,6 +12,13 @@
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 Adafruit_MMA8451 mma = Adafruit_MMA8451();
+
+// pick a random song
+
+// there are three songs, randomly choose a song to play out of the three possible songs
+
+// generate random number between 1 and 3
+int randNumberforSongSelection = random(1, 4);
 
 // setup buttons
   const int button1Pin = 7;
@@ -27,6 +39,9 @@ bool gameLoop = false;
 int timeInterval = 4000;
 
 void setup() {
+  // define the speaker pin
+  tmrpcm.speakerPin = 9; //5,6,11 or 46 on Mega, 9 on Uno, Nano, etc
+
   // put your setup code here, to run once:
 
   // start the serial input for debugging purposes
@@ -81,28 +96,32 @@ void setup() {
   
 
 
-  // pick a random song
-
-  // there are three songs, randomly choose a song to play out of the three possible songs
-
-  // generate random number between 1 and 3
-  int randNumberforSongSelection = random(1, 4);
+ // start playing the randomly selected song
 
   if (randNumberforSongSelection == 1) {
 
     // start playing the first song
+    tmrpcm.setVolume(5); //
+    tmrpcm.play("Song1.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
+                          //try to provide the file name with extension
     
   }
 
   if (randNumberforSongSelection == 2) {
 
     // start playing the second song
+    tmrpcm.setVolume(5); //
+    tmrpcm.play("Song2.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
+                          //try to provide the file name with extension
 
   }
 
   if (randNumberforSongSelection == 3) {
 
     // start playing the third song
+    tmrpcm.setVolume(5); //
+    tmrpcm.play("Song3.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
+                          //try to provide the file name with extension
 
   }
 
@@ -174,17 +193,21 @@ void loop() {
       // printing outputs to serial so we can observe the command in the Serial output for debugging purposes
 
       // printing command to user, telling user what input they must provide
+      // also audio output of command is played out of the speakers
       if (randNumber == 1) {
         Serial.println("Push it!");
         lcd.println("Push it!");
+        tmrpcm.play("PushIt.wav");
       }
       else if (randNumber == 2) {
         Serial.println("Slide it!");
         lcd.println("Slide it!");
+        tmrpcm.play("SlideIt.wav");
       }
       else if (randNumber == 3) {
         Serial.println("Spin it!");
         lcd.println("Spin it!");
+        tmrpcm.play("SpinIt.wav");
       }
 
       // decreasing the time interval of waiting
@@ -307,6 +330,37 @@ void loop() {
 
         break;
       }
+
+
+      // continue playing the randomly selected song if the game will be continuing
+
+      if (randNumberforSongSelection == 1) {
+
+        // start playing the first song
+        tmrpcm.setVolume(5); //
+        tmrpcm.play("Song1.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
+                              //try to provide the file name with extension
+        
+      }
+
+      if (randNumberforSongSelection == 2) {
+
+        // start playing the second song
+        tmrpcm.setVolume(5); //
+        tmrpcm.play("Song2.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
+                              //try to provide the file name with extension
+
+      }
+
+      if (randNumberforSongSelection == 3) {
+
+        // start playing the third song
+        tmrpcm.setVolume(5); //
+        tmrpcm.play("Song3.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
+                              //try to provide the file name with extension
+
+      }
+
     }
   }
 
