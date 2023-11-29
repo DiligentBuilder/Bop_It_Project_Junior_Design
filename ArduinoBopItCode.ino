@@ -164,14 +164,7 @@ void loop() {
   lcd.println("4");
   delay(1000);
   lcd.clear();
-  lcd.println("3");
-  delay(1000);
-  lcd.clear();
-  lcd.println("2");
-  delay(1000);
-  lcd.clear();
-  lcd.println("1");
-  delay(1000);
+  
   startState = HIGH;
 
   if (startState == HIGH) {
