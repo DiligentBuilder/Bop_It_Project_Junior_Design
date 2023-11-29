@@ -491,10 +491,12 @@ void loop() {
 
             delay(3000);
 
-          delay(1000);
+          
 
           lcd.clear();
           lcd.println(score);
+
+          delay(1000);
           
           gameLoop = false;
           break;
@@ -518,10 +520,12 @@ void loop() {
 
           delay(3000);
 
-          delay(1000);
+         
 
           lcd.clear();
           lcd.println(score);
+
+           delay(1000);
 
           
         }
@@ -547,10 +551,12 @@ void loop() {
 
         delay(3000);
 
-        delay(1000);
+       
 
         lcd.clear();
         lcd.println(score);
+        
+        delay(1000);
 
         // once the game is over, exit the game loop and return back to the before the game state
         gameLoop = false;
