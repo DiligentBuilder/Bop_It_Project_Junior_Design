@@ -301,16 +301,22 @@ void loop() {
         if (pushedButtonState == HIGH) {
           pushed = true;
           lcd.println("Push detected!");
+
+          delay(1000);
           break;
         }
         if (spunState == HIGH) {
           spun = true;
           lcd.println("Spin detected!");
+
+          delay(1000);
           break;
         }
         if (slidState == HIGH) {
           slid = true;
           lcd.println("Slid detected!");
+
+          delay(1000);
           break;
         }
 
