@@ -334,6 +334,8 @@ void loop() {
       if (count > timeInterval) {
         lcd.clear();
         lcd.println("Time's up!");
+
+        delay(2000);
         break;
       }
 
