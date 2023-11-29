@@ -360,51 +360,103 @@ void loop() {
       // if the correct input (and only the correct input, no incorrect inputs) is inputted by the user, then the user's score will increase by 1
       if (randNumber == 1) {
         if (pushed == false) {
-          lcd.clear();
+         
           Serial.println("Incorrect input!");
           Serial.println("Game over!");
-
+          
+          lcd.clear();
           lcd.println("Incorrect input!");
-          delay(5000);
+          delay(2000);
           lcd.clear();
           lcd.println("Game over!");
 
+          delay(2000);
+
           gameLoop = false;
           break;
+        }
+
+        else {
+          lcd.clear();
+          lcd.println("Correct input!");
+
+          delay(2000);
+
+          lcd.clear();
+          
+          lcd.println("Job well done!");
+          delay(2000);
+
+          
         }
       }
       
       if (randNumber == 2) {
         if (spun == false) {
-          lcd.clear();
+          
           Serial.println("Incorrect input!");
           Serial.print("Game over!");
 
+          lcd.clear();
+
           lcd.println("Incorrect input!");
-          delay(5000);
+          delay(2000);
           lcd.clear();
           lcd.print("Game over!");
 
+          delay(2000);
+
           gameLoop = false;
           break;
+        }
+
+        else {
+          lcd.clear();
+          lcd.println("Correct input!");
+
+          delay(2000);
+
+          lcd.clear();
+          
+          lcd.println("Job well done!");
+          delay(2000);
+
+          
         }
       }
 
       if (randNumber == 3) {
         if (slid == false) {
-          lcd.clear();
+          //lcd.clear();
           Serial.println("Incorrect input!");
-          delay(5000);
-          lcd.clear();
+          //delay(2000);
+         
           Serial.println("Game over!");
 
+          lcd.clear();
+
           lcd.println("Incorrect input!");
-          delay(5000);
+          delay(2000);
           lcd.clear();
           lcd.println("Game over!");
+          delay(2000);
           
           gameLoop = false;
           break;
+        }
+
+        else {
+          lcd.clear();
+          lcd.println("Correct input!");
+
+          delay(2000);
+
+          lcd.clear();
+          
+          lcd.println("Job well done!");
+          delay(2000);
+
+          
         }
       }
 
@@ -421,6 +473,7 @@ void loop() {
         lcd.clear();
 
         lcd.println("Game over!");
+        delay(2000);
 
         // once the game is over, exit the game loop and return back to the before the game state
         gameLoop = false;
