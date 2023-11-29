@@ -150,28 +150,32 @@ void loop() {
 
   // reading state of start game
   int startState = 0;
-  //startState = digitalRead(button1Pin);
+  startState = digitalRead(buttonPin);
 
   // wait a few seconds and countdown
 
   // before the game starts, the player starts with a score of 0
   score = 0;
+
   
 
-  lcd.clear();
-  lcd.println("Game starting in...");
-  delay(1000);
-  lcd.clear();
-  lcd.println("5");
-  delay(1000);
-  lcd.clear();
-  lcd.println("4");
-  delay(1000);
-  lcd.clear();
-  
-  startState = HIGH;
 
   if (startState == HIGH) {
+
+      
+
+    lcd.clear();
+    lcd.println("Game starting in...");
+    delay(1000);
+    lcd.clear();
+    lcd.println("5");
+    delay(1000);
+    lcd.clear();
+    lcd.println("4");
+    delay(1000);
+    lcd.clear();
+
+  
     lcd.clear();
     
     Serial.println("Game starting in 3...");
@@ -242,9 +246,6 @@ void loop() {
         lcd.println("Spin it!");
         //tmrpcm.play("SpinIt.wav");
       }
-
-      // decreasing the time interval of waiting
-      //timeInterval -= 50;
 
       
 
@@ -373,15 +374,14 @@ void loop() {
 
           delay(2000);
 
-          lcd.clear();
-          lcd.println("Your score is");
+          lcd.setCursor(0, 1);
+          lcd.println("Your score is ");
 
-          delay(1000);
 
-          lcd.clear();
+
           lcd.println(score);
 
-          delay(3000);
+
 
           gameLoop = false;
           break;
@@ -397,18 +397,16 @@ void loop() {
 
           lcd.clear();
           
-          lcd.println("Job well done!");
-          delay(2000);
+          //lcd.println("Job well done!");
+          //delay(2000);
 
           lcd.clear();
-          lcd.println("Your score is");
+          lcd.println("Your score is ");
 
-          delay(1000);
-
-          lcd.clear();
+          
           lcd.println(score);
 
-          delay(3000);
+   
 
           
         }
@@ -432,12 +430,10 @@ void loop() {
           lcd.clear();
           lcd.println("Your score is");
 
-          delay(1000);
-
-          lcd.clear();
+          
           lcd.println(score);
 
-          delay(3000);
+   
 
           gameLoop = false;
           break;
@@ -453,16 +449,19 @@ void loop() {
 
           lcd.clear();
           
-          lcd.println("Job well done!");
-          delay(2000);
+          //lcd.println("Job well done!");
+          //delay(2000);
 
-          lcd.clear();
+          lcd.setCursor(0, 1);
+
           lcd.println("Your score is");
 
           delay(1000);
 
           lcd.clear();
           lcd.println(score);
+
+          lcd.setCursor(0, 0);
 
           delay(3000);
 
@@ -488,17 +487,17 @@ void loop() {
 
           lcd.clear();
 
+          lcd.setCursor(0, 1);
+
           lcd.println("Your score is");
 
 
-          delay(1000);
-            
-
-          lcd.clear();
+          
           lcd.println(score);
 
-          delay(3000);
-          
+          lcd.setCursor(0, 0);
+
+        
           gameLoop = false;
           break;
         }
@@ -513,21 +512,20 @@ void loop() {
 
           lcd.clear();
           
-          lcd.println("Job well done!");
-          delay(2000);
+          //lcd.println("Job well done!");
+          //delay(2000);
 
-          lcd.clear();
+          lcd.setCursor(0,1);
+
+          
           lcd.println("Your score is");
 
          
-          delay(1000);
-
-         
-
-          lcd.clear();
+          
           lcd.println(score);
 
-          delay(3000);
+          lcd.setCursor(0,0);
+
 
            
 
@@ -550,19 +548,17 @@ void loop() {
         lcd.println("Game over!");
         delay(2000);
 
-        lcd.clear();
+        lcd.setCursor(0, 1);
+
         lcd.println("Your score is");
 
         
-        delay(1000);
-       
-
-        lcd.clear();
+        
         lcd.println(score);
+
+        lcd.setCursor(0, 0);
         
        
-
-        delay(3000);
 
         // once the game is over, exit the game loop and return back to the before the game state
         gameLoop = false;
@@ -599,6 +595,11 @@ void loop() {
       //                         //try to provide the file name with extension
 
       // }
+
+      // if the game is continuing to the next iteration of the loop, decrease the time interval
+      // for the next instruction, so the time interval that the user has to react gets shorter and shorter
+      // as the game progresses, the player inputted the correct inputs, and the player gets a higher and higher score
+      timeInterval -= 10;
 
     }
   }
