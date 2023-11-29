@@ -154,6 +154,10 @@ void loop() {
 
   // wait a few seconds and countdown
 
+  // before the game starts, the player starts with a score of 0
+  score = 0;
+  
+
   lcd.clear();
   lcd.println("Game starting in...");
   delay(1000);
