@@ -264,6 +264,8 @@ void loop() {
       int currentSlidState = 0;
       int previousSlidState = 0;
 
+      previousSlidState = analogRead(slideSwitchPin);
+
       // constantly read the pins to check if there is an input during the time window
 
       // defining variables
