@@ -1,6 +1,6 @@
 #include <SD.h> // need to include the SD library
-#define SD_ChipSelectPin 4 //connect pin 4 of arduino to cs pin of sd card
-#include <TMRpcm.h> //Arduino library for asynchronous playback of PCM/WAV files
+//#define SD_ChipSelectPin 4 //connect pin 4 of arduino to cs pin of sd card
+//#include <TMRpcm.h> //Arduino library for asynchronous playback of PCM/WAV files
 #include <SPI.h> //  need to include the SPI library
 
 #include <Wire.h>
@@ -30,7 +30,7 @@ int randNumberforSongSelection = random(1, 4);
   //const int button3Pin = 5;
   //const int button4Pin = 6;
   const int slideSwitchPin = A0;
-  const int ledPin = 4;
+  //const int ledPin = 4;
 
 // setting up score variable
 int score = 0;
@@ -42,11 +42,11 @@ bool gameLoop = false;
 // making on the long side at first to give user plenty of time in beginning
 //int timeInterval = 4000;
 
-TMRpcm tmrpcm; // create an object for use in this sketch
+//TMRpcm tmrpcm; // create an object for use in this sketch
 
 void setup() {
   // define the speaker pin
-  tmrpcm.speakerPin = 9; //5,6,11 or 46 on Mega, 9 on Uno, Nano, etc
+  //tmrpcm.speakerPin = 9; //5,6,11 or 46 on Mega, 9 on Uno, Nano, etc
 
   // put your setup code here, to run once:
 
@@ -90,7 +90,7 @@ void setup() {
   pinMode(slideSwitchPin, INPUT);
   
   // setup the LED
-  pinMode(ledPin, OUTPUT);
+  //pinMode(ledPin, OUTPUT);
 
 
   // setup the LCD display
@@ -101,8 +101,8 @@ void setup() {
   
 
   // start playing the begin soundtrack
-  tmrpcm.setVolume(5);
-  tmrpcm.play("BeginIt.wav");
+  //tmrpcm.setVolume(5);
+  //tmrpcm.play("BeginIt.wav");
 
 
 
@@ -229,19 +229,19 @@ void loop() {
         lcd.clear();
         Serial.println("Press it!");
         lcd.println("Press it!");
-        tmrpcm.play("PressIt.wav");
+        //tmrpcm.play("PressIt.wav");
       }
       else if (randNumber == 2) {
         lcd.clear();
         Serial.println("Slide it!");
         lcd.println("Slide it!");
-        tmrpcm.play("SlideIt.wav");
+        //tmrpcm.play("SlideIt.wav");
       }
       else if (randNumber == 3) {
         lcd.clear();
         Serial.println("Spin it!");
         lcd.println("Spin it!");
-        tmrpcm.play("SpinIt.wav");
+        //tmrpcm.play("SpinIt.wav");
       }
 
       // decreasing the time interval of waiting
