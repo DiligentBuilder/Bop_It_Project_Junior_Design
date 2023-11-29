@@ -14,7 +14,7 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 Adafruit_MMA8451 mma = Adafruit_MMA8451();
 
 // define the thresholds for the acceleration and the slide switch for those inputs
-int thresholdAcceleration = 1;
+int thresholdAcceleration = 10;
 int thresholdSlideSwitch = 10;
 
 // pick a random song
@@ -300,14 +300,17 @@ void loop() {
 
         if (pushedButtonState == HIGH) {
           pushed = true;
+          lcd.println("Push detected!");
           break;
         }
         if (spunState == HIGH) {
           spun = true;
+          lcd.println("Spin detected!");
           break;
         }
         if (slidState == HIGH) {
           slid = true;
+          lcd.println("Slid detected!");
           break;
         }
 
