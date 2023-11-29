@@ -426,7 +426,7 @@ void loop() {
       }
 
       if (randNumber == 3) {
-        if (spin == false) {
+        if (spun == false) {
           //lcd.clear();
           Serial.println("Incorrect input!");
           //delay(2000);
