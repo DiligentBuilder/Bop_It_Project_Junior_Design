@@ -153,6 +153,10 @@ void loop() {
   //startState = digitalRead(button1Pin);
 
   // wait a few seconds and countdown
+
+  lcd.clear();
+  lcd.println("Game starting in...");
+  delay(1000);
   lcd.clear();
   lcd.println("5");
   delay(1000);
