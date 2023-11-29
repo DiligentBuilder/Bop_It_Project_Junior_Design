@@ -32,7 +32,7 @@ int randNumberforSongSelection = random(1, 4);
   const int slideSwitchPin = A0;
   //const int ledPin = 4;
 
-// setting up score variable
+// setting up score variable to keep track of the player's score
 int score = 0;
 
 // game loop variable
@@ -136,8 +136,6 @@ void setup() {
 
   // }
 
-
-  
 
 
 
@@ -372,6 +370,14 @@ void loop() {
 
           delay(2000);
 
+          
+          lcd.println("Your score is");
+
+          delay(1000);
+
+          lcd.clear();
+          lcd.println(score);
+
           gameLoop = false;
           break;
         }
@@ -380,12 +386,22 @@ void loop() {
           lcd.clear();
           lcd.println("Correct input!");
 
+          score++;
+
           delay(2000);
 
           lcd.clear();
           
           lcd.println("Job well done!");
           delay(2000);
+
+          
+          lcd.println("Your score is");
+
+          delay(1000);
+
+          lcd.clear();
+          lcd.println(score);
 
           
         }
@@ -406,6 +422,14 @@ void loop() {
 
           delay(2000);
 
+          
+          lcd.println("Your score is");
+
+          delay(1000);
+
+          lcd.clear();
+          lcd.println(score);
+
           gameLoop = false;
           break;
         }
@@ -414,12 +438,22 @@ void loop() {
           lcd.clear();
           lcd.println("Correct input!");
 
+          score++;
+
           delay(2000);
 
           lcd.clear();
           
           lcd.println("Job well done!");
           delay(2000);
+
+          
+          lcd.println("Your score is");
+
+          delay(1000);
+
+          lcd.clear();
+          lcd.println(score);
 
           
         }
@@ -440,6 +474,15 @@ void loop() {
           lcd.clear();
           lcd.println("Game over!");
           delay(2000);
+
+          lcd.clear();
+
+          lcd.println("Your score is");
+
+          delay(1000);
+
+          lcd.clear();
+          lcd.println(score);
           
           gameLoop = false;
           break;
@@ -449,12 +492,22 @@ void loop() {
           lcd.clear();
           lcd.println("Correct input!");
 
+          score++;
+
           delay(2000);
 
           lcd.clear();
           
           lcd.println("Job well done!");
           delay(2000);
+
+          
+          lcd.println("Your score is");
+
+          delay(1000);
+
+          lcd.clear();
+          lcd.println(score);
 
           
         }
@@ -474,6 +527,14 @@ void loop() {
 
         lcd.println("Game over!");
         delay(2000);
+
+        
+        lcd.println("Your score is");
+
+        delay(1000);
+
+        lcd.clear();
+        lcd.println(score);
 
         // once the game is over, exit the game loop and return back to the before the game state
         gameLoop = false;
