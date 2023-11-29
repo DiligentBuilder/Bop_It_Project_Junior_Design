@@ -378,6 +378,8 @@ void loop() {
           lcd.clear();
           lcd.println(score);
 
+          delay(3000);
+
           gameLoop = false;
           break;
         }
@@ -402,6 +404,8 @@ void loop() {
 
           lcd.clear();
           lcd.println(score);
+
+          delay(3000);
 
           
         }
@@ -430,6 +434,8 @@ void loop() {
           lcd.clear();
           lcd.println(score);
 
+          delay(3000);
+
           gameLoop = false;
           break;
         }
@@ -454,6 +460,8 @@ void loop() {
 
           lcd.clear();
           lcd.println(score);
+
+          delay(3000);
 
           
         }
@@ -479,6 +487,8 @@ void loop() {
 
           lcd.println("Your score is");
 
+            delay(3000);
+
           delay(1000);
 
           lcd.clear();
@@ -503,6 +513,8 @@ void loop() {
 
           
           lcd.println("Your score is");
+
+          delay(3000);
 
           delay(1000);
 
@@ -530,6 +542,8 @@ void loop() {
 
         
         lcd.println("Your score is");
+
+        delay(3000);
 
         delay(1000);
 
