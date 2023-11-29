@@ -7,7 +7,7 @@
 #include <Adafruit_MMA8451.h>
 #include <Adafruit_Sensor.h>
 
-#include <LiquidCrystal_I2c.h>
+#include <LiquidCrystal_I2C.h>
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
@@ -29,7 +29,7 @@ int randNumberforSongSelection = random(1, 4);
   const int button2Pin = 6;
   //const int button3Pin = 5;
   //const int button4Pin = 6;
-  const int SlideSwitchPin = A0;
+  const int slideSwitchPin = A0;
   const int ledPin = 4;
 
 // setting up score variable
@@ -41,6 +41,8 @@ bool gameLoop = false;
 // int for setting the time interval that the program waits for the user to react to the command
 // making on the long side at first to give user plenty of time in beginning
 int timeInterval = 4000;
+
+TMRpcm tmrpcm; // create an object for use in this sketch
 
 void setup() {
   // define the speaker pin
@@ -74,6 +76,7 @@ void setup() {
 
   // Display welcome message
   Serial.println("Welcome to Bop-It!");
+  lcd.println("Welcome to Bop-It!");
 
 
  
@@ -84,7 +87,7 @@ void setup() {
   //pinMode(button4Pin, INPUT);
 
   
-  pinMode(SlideSwitchPin, INPUT);
+  pinMode(slideSwitchPin, INPUT);
   
   // setup the LED
   pinMode(ledPin, OUTPUT);
@@ -147,7 +150,27 @@ void loop() {
   int startState = 0;
   startState = digitalRead(button1Pin);
 
+  // wait a few seconds and countdown
+  lcd.clear();
+  lcd.println("5");
+  delay(1000);
+  lcd.clear();
+  lcd.println("4");
+  delay(1000);
+  lcd.clear();
+  lcd.println("3");
+  delay(1000);
+  lcd.clear();
+  lcd.println("2");
+  delay(1000);
+  lcd.clear();
+  lcd.println("1");
+  delay(1000);
+  startState = HIGH;
+
   if (startState == HIGH) {
+    lcd.clear();
+    
     Serial.println("Game starting in 3...");
     lcd.println("Game starting in 3...");
     delay(1000);
@@ -199,16 +222,19 @@ void loop() {
       // printing command to user, telling user what input they must provide
       // also audio output of command is played out of the speakers
       if (randNumber == 1) {
-        Serial.println("Push it!");
-        lcd.println("Push it!");
-        tmrpcm.play("PushIt.wav");
+        lcd.clear();
+        Serial.println("Press it!");
+        lcd.println("Press it!");
+        tmrpcm.play("PressIt.wav");
       }
       else if (randNumber == 2) {
+        lcd.clear();
         Serial.println("Slide it!");
         lcd.println("Slide it!");
         tmrpcm.play("SlideIt.wav");
       }
       else if (randNumber == 3) {
+        lcd.clear();
         Serial.println("Spin it!");
         lcd.println("Spin it!");
         tmrpcm.play("SpinIt.wav");
@@ -217,9 +243,7 @@ void loop() {
       // decreasing the time interval of waiting
       timeInterval -= 50;
 
-      // give the user time to react to the command
-      // program waits for some time
-      delay(timeInterval);
+      
 
       // detection code
 
@@ -233,13 +257,18 @@ void loop() {
       int pushedButtonState = 0;
       int spunState = 0;
       int slidState = 0;
+      int currentSlidState = 0;
+      int previousSlidState = 0;
+
       pushedButtonState = digitalRead(button2Pin);
       //spunState = digitalRead(button3Pin);
 
       // reading the slide switch
-      currentSlidState = analogRead(button4Pin);
+      currentSlidState = analogRead(slideSwitchPin);
 
-      if abs(currentSlidState - slidStatePrevious) > thresholdSlideSwitch {
+      int x = abs(currentSlidState - previousSlidState); 
+
+      if (x > thresholdSlideSwitch) {
         slidState = HIGH;
       }
 
@@ -276,11 +305,16 @@ void loop() {
 
       // if incorrect inputs, the game is over
 
+      // give the user time to react to the command
+      // program waits for some time
+      delay(timeInterval);
+
 
 
       // if the correct input (and only the correct input, no incorrect inputs) is inputted by the user, then the user's score will increase by 1
       if (randNumber == 1) {
         if (pushed == false || spun == true || slid == true) {
+          lcd.clear();
           Serial.println("Incorrect input!");
           Serial.println("Game over!");
 
@@ -296,6 +330,7 @@ void loop() {
       
       if (randNumber == 2) {
         if (pushed == true || spun == false || slid == true) {
+          lcd.clear();
           Serial.println("Incorrect input!");
           Serial.print("Game over!");
 
@@ -311,6 +346,7 @@ void loop() {
 
       if (randNumber == 3) {
         if (pushed == true || spun == true || slid == false) {
+          lcd.clear();
           Serial.println("Incorrect input!");
           delay(5000);
           lcd.clear();
@@ -330,6 +366,7 @@ void loop() {
       // if the score reaches 99, then the game stops
 
       if (score == 99) {
+        lcd.clear();
         Serial.println("Congratulations, you have a score of 99 points, and you have successfully reached the end of the game!");
         Serial.println("Game over!");
 
