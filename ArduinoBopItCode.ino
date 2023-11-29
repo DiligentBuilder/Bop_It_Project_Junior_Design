@@ -300,6 +300,7 @@ void loop() {
 
         if (pushedButtonState == HIGH) {
           pushed = true;
+          lcd.clear();
           lcd.println("Push detected!");
 
           delay(1000);
@@ -307,6 +308,7 @@ void loop() {
         }
         if (spunState == HIGH) {
           spun = true;
+          lcd.clear();
           lcd.println("Spin detected!");
 
           delay(1000);
@@ -314,6 +316,7 @@ void loop() {
         }
         if (slidState == HIGH) {
           slid = true;
+          lcd.clear();
           lcd.println("Slid detected!");
 
           delay(1000);
@@ -329,6 +332,8 @@ void loop() {
       count++;
 
       if (count > timeInterval) {
+        lcd.clear();
+        lcd.println("Time's up!");
         break;
       }
 
