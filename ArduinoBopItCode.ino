@@ -372,7 +372,7 @@ void loop() {
 
           delay(2000);
 
-          
+          lcd.clear();
           lcd.println("Your score is");
 
           delay(1000);
@@ -399,7 +399,7 @@ void loop() {
           lcd.println("Job well done!");
           delay(2000);
 
-          
+          lcd.clear();
           lcd.println("Your score is");
 
           delay(1000);
@@ -428,7 +428,7 @@ void loop() {
 
           delay(2000);
 
-          
+          lcd.clear();
           lcd.println("Your score is");
 
           delay(1000);
@@ -455,7 +455,7 @@ void loop() {
           lcd.println("Job well done!");
           delay(2000);
 
-          
+          lcd.clear();
           lcd.println("Your score is");
 
           delay(1000);
@@ -489,14 +489,14 @@ void loop() {
 
           lcd.println("Your score is");
 
-            delay(3000);
 
-          
+          delay(1000);
+            
 
           lcd.clear();
           lcd.println(score);
 
-          delay(1000);
+          delay(3000);
           
           gameLoop = false;
           break;
@@ -515,7 +515,7 @@ void loop() {
           lcd.println("Job well done!");
           delay(2000);
 
-          
+          lcd.clear();
           lcd.println("Your score is");
 
          
@@ -549,7 +549,7 @@ void loop() {
         lcd.println("Game over!");
         delay(2000);
 
-        
+        lcd.clear();
         lcd.println("Your score is");
 
         
