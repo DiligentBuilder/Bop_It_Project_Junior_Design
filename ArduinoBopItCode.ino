@@ -376,10 +376,8 @@ void loop() {
 
           lcd.setCursor(0, 1);
           lcd.println("Your score is ");
-
-
-
           lcd.println(score);
+          lcd.setCursor(0, 0);
 
 
 
@@ -400,11 +398,10 @@ void loop() {
           //lcd.println("Job well done!");
           //delay(2000);
 
-          lcd.clear();
+          lcd.setCursor(0, 1);
           lcd.println("Your score is ");
-
-          
           lcd.println(score);
+          lcd.setCursor(0, 0);
 
    
 
@@ -427,11 +424,10 @@ void loop() {
 
           delay(2000);
 
-          lcd.clear();
+          lcd.setCursor(0,1);
           lcd.println("Your score is ");
-
-          
           lcd.println(score);
+          lcd.setCursor(0, 0);
 
    
 
@@ -453,14 +449,8 @@ void loop() {
           //delay(2000);
 
           lcd.setCursor(0, 1);
-
           lcd.println("Your score is ");
-
-          delay(1000);
-
-          lcd.clear();
           lcd.println(score);
-
           lcd.setCursor(0, 0);
 
           delay(3000);
@@ -485,16 +475,9 @@ void loop() {
           lcd.println("Game over!");
           delay(2000);
 
-          lcd.clear();
-
           lcd.setCursor(0, 1);
-
           lcd.println("Your score is ");
-
-
-          
           lcd.println(score);
-
           lcd.setCursor(0, 0);
 
         
@@ -515,16 +498,10 @@ void loop() {
           //lcd.println("Job well done!");
           //delay(2000);
 
-          lcd.setCursor(0,1);
-
-          
+          lcd.setCursor(0, 1);
           lcd.println("Your score is ");
-
-         
-          
           lcd.println(score);
-
-          lcd.setCursor(0,0);
+          lcd.setCursor(0, 0);
 
 
            
@@ -549,13 +526,8 @@ void loop() {
         delay(2000);
 
         lcd.setCursor(0, 1);
-
         lcd.println("Your score is ");
-
-        
-        
         lcd.println(score);
-
         lcd.setCursor(0, 0);
         
        
