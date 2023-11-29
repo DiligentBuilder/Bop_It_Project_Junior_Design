@@ -25,8 +25,8 @@ int thresholdSlideSwitch = 10;
 int randNumberforSongSelection = random(1, 4);
 
 // setup buttons
-  const int button1Pin = 7;
-  const int button2Pin = 6;
+  //const int button1Pin = 7;
+  const int buttonPin = 4;
   //const int button3Pin = 5;
   //const int button4Pin = 6;
   const int slideSwitchPin = A0;
@@ -40,7 +40,7 @@ bool gameLoop = false;
 
 // int for setting the time interval that the program waits for the user to react to the command
 // making on the long side at first to give user plenty of time in beginning
-int timeInterval = 4000;
+//int timeInterval = 4000;
 
 TMRpcm tmrpcm; // create an object for use in this sketch
 
@@ -81,8 +81,8 @@ void setup() {
 
  
   // setup the pins for the user inputs
-  pinMode(button1Pin, INPUT);
-  pinMode(button2Pin, INPUT);
+  //pinMode(button1Pin, INPUT);
+  pinMode(buttonPin, INPUT);
   //pinMode(button3Pin, INPUT);
   //pinMode(button4Pin, INPUT);
 
@@ -152,7 +152,7 @@ void loop() {
 
   // reading state of start game
   int startState = 0;
-  startState = digitalRead(button1Pin);
+  //startState = digitalRead(button1Pin);
 
   // wait a few seconds and countdown
   lcd.clear();
@@ -176,13 +176,13 @@ void loop() {
     lcd.clear();
     
     Serial.println("Game starting in 3...");
-    lcd.println("Game starting in 3...");
+    lcd.println("Starting in 3...");
     delay(1000);
 
     lcd.clear();
 
     Serial.println("Game starting in 2...");
-    lcd.println("Gane starting in 2...");
+    lcd.println("Starting in 2...");
     delay(1000);
 
 
@@ -190,7 +190,7 @@ void loop() {
 
 
     Serial.println("Game starting in 1...");
-    lcd.println("Game starting in 1...");
+    lcd.println("Starting in 1...");
     delay(1000);
 
     lcd.clear();
@@ -245,7 +245,7 @@ void loop() {
       }
 
       // decreasing the time interval of waiting
-      timeInterval -= 50;
+      //timeInterval -= 50;
 
       
 
@@ -264,43 +264,71 @@ void loop() {
       int currentSlidState = 0;
       int previousSlidState = 0;
 
-      pushedButtonState = digitalRead(button2Pin);
-      //spunState = digitalRead(button3Pin);
+      // constantly read the pins to check if there is an input during the time window
 
-      // reading the slide switch
-      currentSlidState = analogRead(slideSwitchPin);
+      // defining variables
+      int count = 0;
+      int timeInterval = 500;
+      int smallInterval = 10;
 
-      int x = abs(currentSlidState - previousSlidState); 
+      while (true) {
+        pushedButtonState = digitalRead(buttonPin);
+        //spunState = digitalRead(button3Pin);
 
-      if (x > thresholdSlideSwitch) {
-        slidState = HIGH;
+        // reading the slide switch
+        currentSlidState = analogRead(slideSwitchPin);
+
+        int x = abs(currentSlidState - previousSlidState); 
+
+        if (x > thresholdSlideSwitch) {
+          slidState = HIGH;
+        }
+
+        // update the previousSlidState
+        previousSlidState = currentSlidState;
+        
+
+        // for the spinning, detect if the X, Y, or Z acceleration exceeds the threshold, if so, a spun has been detected
+        mma.read();
+        sensors_event_t event;
+        mma.getEvent(&event);
+
+        if (event.acceleration.x > thresholdAcceleration || event.acceleration.y > thresholdAcceleration || event.acceleration.z > thresholdAcceleration) {
+          // a spin has been detected if the X, Y, or Z acceleration exceeds the threshold
+          spunState = HIGH;
+        }
+
+        if (pushedButtonState == HIGH) {
+          pushed = true;
+          break;
+        }
+        if (spunState == HIGH) {
+          spun = true;
+          break;
+        }
+        if (slidState == HIGH) {
+          slid = true;
+          break;
+        }
+
+
+      // if the time has exceeded, we break out of the loop
+      // give the user time to react to the command
+      // program waits for some time
+      delay(smallInterval);
+
+      count++;
+
+      if (count > timeInterval) {
+        break;
       }
 
-      // update the previousSlidState
-      previousSlidState = currentSlidState;
+      }
+
+      
       
 
-      // for the spinning, detect if the X, Y, or Z acceleration exceeds the threshold, if so, a spun has been detected
-      mma.read();
-      sensors_event_t event;
-      mma.getEvent(&event);
-
-      if (event.acceleration.x > thresholdAcceleration || event.acceleration.y > thresholdAcceleration || event.acceleration.z > thresholdAcceleration) {
-        // a spin has been detected if the X, Y, or Z acceleration exceeds the threshold
-        spunState = HIGH;
-      }
-
       
-
-      if (pushedButtonState == HIGH) {
-        pushed = true;
-      }
-      if (spunState == HIGH) {
-        spun = true;
-      }
-      if (slidState == HIGH) {
-        slid = true;
-      }
 
       // game logic
 
@@ -309,15 +337,13 @@ void loop() {
 
       // if incorrect inputs, the game is over
 
-      // give the user time to react to the command
-      // program waits for some time
-      delay(timeInterval);
+      
 
 
 
       // if the correct input (and only the correct input, no incorrect inputs) is inputted by the user, then the user's score will increase by 1
       if (randNumber == 1) {
-        if (pushed == false || spun == true || slid == true) {
+        if (pushed == false) {
           lcd.clear();
           Serial.println("Incorrect input!");
           Serial.println("Game over!");
@@ -333,7 +359,7 @@ void loop() {
       }
       
       if (randNumber == 2) {
-        if (pushed == true || spun == false || slid == true) {
+        if (spun == false) {
           lcd.clear();
           Serial.println("Incorrect input!");
           Serial.print("Game over!");
@@ -349,7 +375,7 @@ void loop() {
       }
 
       if (randNumber == 3) {
-        if (pushed == true || spun == true || slid == false) {
+        if (slid == false) {
           lcd.clear();
           Serial.println("Incorrect input!");
           delay(5000);
