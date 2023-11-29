@@ -100,37 +100,41 @@ void setup() {
 
   
 
-  
+  // start playing the begin soundtrack
+  tmrpcm.setVolume(5);
+  tmrpcm.play("BeginIt.wav");
+
+
 
 
  // start playing the randomly selected song
 
-  if (randNumberforSongSelection == 1) {
+  // if (randNumberforSongSelection == 1) {
 
-    // start playing the first song
-    tmrpcm.setVolume(5); //
-    tmrpcm.play("Song1.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
-                          //try to provide the file name with extension
+  //   // start playing the first song
+  //   tmrpcm.setVolume(5); //
+  //   tmrpcm.play("Song1.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
+  //                         //try to provide the file name with extension
     
-  }
+  // }
 
-  if (randNumberforSongSelection == 2) {
+  // if (randNumberforSongSelection == 2) {
 
-    // start playing the second song
-    tmrpcm.setVolume(5); //
-    tmrpcm.play("Song2.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
-                          //try to provide the file name with extension
+  //   // start playing the second song
+  //   tmrpcm.setVolume(5); //
+  //   tmrpcm.play("Song2.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
+  //                         //try to provide the file name with extension
 
-  }
+  // }
 
-  if (randNumberforSongSelection == 3) {
+  // if (randNumberforSongSelection == 3) {
 
-    // start playing the third song
-    tmrpcm.setVolume(5); //
-    tmrpcm.play("Song3.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
-                          //try to provide the file name with extension
+  //   // start playing the third song
+  //   tmrpcm.setVolume(5); //
+  //   tmrpcm.play("Song3.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
+  //                         //try to provide the file name with extension
 
-  }
+  // }
 
 
   
@@ -385,32 +389,32 @@ void loop() {
 
       // continue playing the randomly selected song if the game will be continuing
 
-      if (randNumberforSongSelection == 1) {
+      // if (randNumberforSongSelection == 1) {
 
-        // start playing the first song
-        tmrpcm.setVolume(5); //
-        tmrpcm.play("Song1.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
-                              //try to provide the file name with extension
+      //   // start playing the first song
+      //   tmrpcm.setVolume(5); //
+      //   tmrpcm.play("Song1.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
+      //                         //try to provide the file name with extension
         
-      }
+      // }
 
-      if (randNumberforSongSelection == 2) {
+      // if (randNumberforSongSelection == 2) {
 
-        // start playing the second song
-        tmrpcm.setVolume(5); //
-        tmrpcm.play("Song2.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
-                              //try to provide the file name with extension
+      //   // start playing the second song
+      //   tmrpcm.setVolume(5); //
+      //   tmrpcm.play("Song2.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
+      //                         //try to provide the file name with extension
 
-      }
+      // }
 
-      if (randNumberforSongSelection == 3) {
+      // if (randNumberforSongSelection == 3) {
 
-        // start playing the third song
-        tmrpcm.setVolume(5); //
-        tmrpcm.play("Song3.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
-                              //try to provide the file name with extension
+      //   // start playing the third song
+      //   tmrpcm.setVolume(5); //
+      //   tmrpcm.play("Song3.wav"); //the sound file "song" will play each time the arduino powers up, or is reset
+      //                         //try to provide the file name with extension
 
-      }
+      // }
 
     }
   }
