@@ -51,23 +51,23 @@ void setup() {
   // put your setup code here, to run once:
 
   // start the serial input for debugging purposes
-  Serial.begin(9600);
+  // Serial.begin(9600);
 
   // accelerometer setup code
 
-  Serial.println("Adafruit MMA8451 test!");
+  // Serial.println("Adafruit MMA8451 test!");
   
 
   if (! mma.begin()) {
-    Serial.println("Couldnt start");
+    // Serial.println("Couldnt start");
     while (1);
   }
-  Serial.println("MMA8451 found!");
+  // Serial.println("MMA8451 found!");
   
   mma.setRange(MMA8451_RANGE_2_G);
   
-  Serial.print("Range = "); Serial.print(2 << mma.getRange());  
-  Serial.println("G");
+  //Serial.print("Range = "); Serial.print(2 << mma.getRange());  
+  //Serial.println("G");
 
   lcd.init();
   lcd.backlight();
@@ -75,8 +75,10 @@ void setup() {
   
 
   // Display welcome message
-  Serial.println("Welcome to Bop-It!");
+  //Serial.println("Welcome to Bop-It!");
   lcd.println("Welcome to Bop-It!");
+
+  delay(2);
 
 
  
@@ -141,7 +143,26 @@ void setup() {
 
 }
 
+bool firstTime = 1;
+
+int startState = 0;
+
 void loop() {
+
+  if (firstTime) {
+    lcd.clear();
+
+    lcd.println("Press it!");
+    lcd.setCursor(0,1);
+    lcd.println("to begin!");
+    lcd.setCursor(0,0);
+
+    startState = 0;
+  }
+
+  
+
+
   // put your main code here, to run repeatedly:
 
   // read the state of the pushbutton values
@@ -149,7 +170,7 @@ void loop() {
   // using the states as the three game inputs, as well as the start game button
 
   // reading state of start game
-  int startState = 0;
+  
   startState = digitalRead(buttonPin);
 
   // wait a few seconds and countdown
@@ -178,13 +199,13 @@ void loop() {
   
     lcd.clear();
     
-    Serial.println("Game starting in 3...");
+    //Serial.println("Game starting in 3...");
     lcd.println("Starting in 3...");
     delay(1000);
 
     lcd.clear();
 
-    Serial.println("Game starting in 2...");
+    //Serial.println("Game starting in 2...");
     lcd.println("Starting in 2...");
     delay(1000);
 
@@ -192,7 +213,7 @@ void loop() {
     lcd.clear();
 
 
-    Serial.println("Game starting in 1...");
+    //Serial.println("Game starting in 1...");
     lcd.println("Starting in 1...");
     delay(1000);
 
@@ -230,20 +251,35 @@ void loop() {
       // also audio output of command is played out of the speakers
       if (randNumber == 1) {
         lcd.clear();
-        Serial.println("Press it!");
+        // Serial.println("Press it!");
         lcd.println("Press it!");
+
+        lcd.setCursor(0, 1);
+        lcd.println("Your score is ");
+        lcd.println(score);
+        lcd.setCursor(0, 0);
         //tmrpcm.play("PressIt.wav");
       }
       else if (randNumber == 2) {
         lcd.clear();
-        Serial.println("Slide it!");
+        // Serial.println("Slide it!");
         lcd.println("Slide it!");
+
+        lcd.setCursor(0, 1);
+        lcd.println("Your score is ");
+        lcd.println(score);
+        lcd.setCursor(0, 0);
         //tmrpcm.play("SlideIt.wav");
       }
       else if (randNumber == 3) {
         lcd.clear();
-        Serial.println("Spin it!");
+        // Serial.println("Spin it!");
         lcd.println("Spin it!");
+
+        lcd.setCursor(0, 1);
+        lcd.println("Your score is ");
+        lcd.println(score);
+        lcd.setCursor(0, 0);
         //tmrpcm.play("SpinIt.wav");
       }
 
@@ -305,7 +341,15 @@ void loop() {
           lcd.clear();
           lcd.println("Push detected!");
 
+          lcd.setCursor(0, 1);
+          lcd.println("Your score is ");
+          lcd.println(score);
+          lcd.setCursor(0, 0);
+
           delay(1000);
+
+          firstTime = 1;
+          
           break;
         }
         if (spunState == HIGH) {
@@ -313,7 +357,15 @@ void loop() {
           lcd.clear();
           lcd.println("Spin detected!");
 
+          lcd.setCursor(0, 1);
+          lcd.println("Your score is ");
+          lcd.println(score);
+          lcd.setCursor(0, 0);
+
           delay(1000);
+
+          firstTime = 1;
+          
           break;
         }
         if (slidState == HIGH) {
@@ -321,7 +373,14 @@ void loop() {
           lcd.clear();
           lcd.println("Slid detected!");
 
+          lcd.setCursor(0, 1);
+          lcd.println("Your score is ");
+          lcd.println(score);
+          lcd.setCursor(0, 0);
+
           delay(1000);
+
+          firstTime = 1;
           break;
         }
 
@@ -337,7 +396,14 @@ void loop() {
         lcd.clear();
         lcd.println("Time's up!");
 
+        lcd.setCursor(0, 1);
+        lcd.println("Your score is ");
+        lcd.println(score);
+        lcd.setCursor(0, 0);
+
         delay(2000);
+
+        firstTime = 1;
         break;
       }
 
@@ -355,6 +421,7 @@ void loop() {
 
       // if incorrect inputs, the game is over
 
+
       
 
 
@@ -363,25 +430,35 @@ void loop() {
       if (randNumber == 1) {
         if (pushed == false) {
          
-          Serial.println("Incorrect input!");
-          Serial.println("Game over!");
+          // Serial.println("Incorrect input!");
+          // Serial.println("Game over!");
           
           lcd.clear();
           lcd.println("Incorrect input!");
-          delay(2000);
-          lcd.clear();
-          lcd.println("Game over!");
-
-          delay(2000);
 
           lcd.setCursor(0, 1);
           lcd.println("Your score is ");
           lcd.println(score);
           lcd.setCursor(0, 0);
+          
+          delay(2000);
+
+          lcd.clear();
+          lcd.println("Game over!");
+          
+          lcd.setCursor(0, 1);
+          lcd.println("Your score is ");
+          lcd.println(score);
+          lcd.setCursor(0, 0);
+
+          delay(2000);
+
+         
 
 
 
           gameLoop = false;
+          firstTime = 1;
           break;
         }
 
@@ -389,19 +466,14 @@ void loop() {
           lcd.clear();
           lcd.println("Correct input!");
 
-          score++;
-
-          delay(2000);
-
-          lcd.clear();
-          
-          //lcd.println("Job well done!");
-          //delay(2000);
-
           lcd.setCursor(0, 1);
           lcd.println("Your score is ");
           lcd.println(score);
           lcd.setCursor(0, 0);
+
+          score++;
+
+          delay(2000);
 
    
 
@@ -412,26 +484,31 @@ void loop() {
       if (randNumber == 2) {
         if (slid == false) {
           
-          Serial.println("Incorrect input!");
-          Serial.print("Game over!");
+          // Serial.println("Incorrect input!");
+          // Serial.print("Game over!");
 
           lcd.clear();
 
           lcd.println("Incorrect input!");
+
           delay(2000);
+
           lcd.clear();
           lcd.print("Game over!");
 
-          delay(2000);
-
-          lcd.setCursor(0,1);
+          lcd.setCursor(0, 1);
           lcd.println("Your score is ");
           lcd.println(score);
           lcd.setCursor(0, 0);
 
+          delay(2000);
+
    
 
           gameLoop = false;
+
+          firstTime = 1;
+
           break;
         }
 
@@ -441,6 +518,12 @@ void loop() {
 
           score++;
 
+          
+          lcd.setCursor(0, 1);
+          lcd.println("Your score is ");
+          lcd.println(score);
+          lcd.setCursor(0, 0);
+
           delay(2000);
 
           lcd.clear();
@@ -448,12 +531,7 @@ void loop() {
           //lcd.println("Job well done!");
           //delay(2000);
 
-          lcd.setCursor(0, 1);
-          lcd.println("Your score is ");
-          lcd.println(score);
-          lcd.setCursor(0, 0);
 
-          delay(3000);
 
           
         }
@@ -462,10 +540,10 @@ void loop() {
       if (randNumber == 3) {
         if (spun == false) {
           //lcd.clear();
-          Serial.println("Incorrect input!");
+          // Serial.println("Incorrect input!");
           //delay(2000);
          
-          Serial.println("Game over!");
+          // Serial.println("Game over!");
 
           lcd.clear();
 
@@ -482,6 +560,9 @@ void loop() {
 
         
           gameLoop = false;
+
+          firstTime = 1;
+
           break;
         }
 
@@ -491,6 +572,12 @@ void loop() {
 
           score++;
 
+          
+          lcd.setCursor(0, 1);
+          lcd.println("Your score is ");
+          lcd.println(score);
+          lcd.setCursor(0, 0);
+
           delay(2000);
 
           lcd.clear();
@@ -498,10 +585,6 @@ void loop() {
           //lcd.println("Job well done!");
           //delay(2000);
 
-          lcd.setCursor(0, 1);
-          lcd.println("Your score is ");
-          lcd.println(score);
-          lcd.setCursor(0, 0);
 
 
            
@@ -515,25 +598,32 @@ void loop() {
 
       if (score == 99) {
         lcd.clear();
-        Serial.println("Congratulations, you have a score of 99 points, and you have successfully reached the end of the game!");
-        Serial.println("Game over!");
+        // Serial.println("Congratulations, you have a score of 99 points, and you have successfully reached the end of the game!");
+        // Serial.println("Game over!");
 
-        lcd.println("Congratulations, you have a score of 99 points, and you have successfully reached the end of the game!");
+        lcd.println("Congratulations, your");
+        lcd.println("score is 99 points");
+
         delay(5000);
-        lcd.clear();
 
+        lcd.clear();
         lcd.println("Game over!");
-        delay(2000);
 
         lcd.setCursor(0, 1);
         lcd.println("Your score is ");
         lcd.println(score);
         lcd.setCursor(0, 0);
+
+        delay(2000);
+
+        
         
        
 
         // once the game is over, exit the game loop and return back to the before the game state
         gameLoop = false;
+
+        firstTime = 1;
 
         break;
       }
