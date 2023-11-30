@@ -567,13 +567,15 @@ void loop() {
 
           lcd.clear();
           lcd.print("Game over!");
-          
-          delay(2000);
 
           lcd.setCursor(0, 1);
           lcd.print("Your score is ");
           lcd.print(score);
           lcd.setCursor(0, 0);
+          
+          delay(2000);
+
+          
 
         
           gameLoop = false;
