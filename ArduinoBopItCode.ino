@@ -77,7 +77,9 @@ void setup() {
   // Display welcome message
   //Serial.print("Welcome to Bop-It!");
   lcd.print("Welcome to...");
+  lcd.setCursor(0, 1);
   lcd.print("Bop-It!");
+  lcd.setCursor(0, 0);
 
   delay(2);
 
