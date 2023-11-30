@@ -491,6 +491,12 @@ void loop() {
 
           lcd.println("Incorrect input!");
 
+          lcd.setCursor(0, 1);
+          lcd.println("Your score is ");
+          lcd.println(score);
+          lcd.setCursor(0, 0);
+
+
           delay(2000);
 
           lcd.clear();
@@ -548,9 +554,17 @@ void loop() {
           lcd.clear();
 
           lcd.println("Incorrect input!");
+
+          lcd.setCursor(0, 1);
+          lcd.println("Your score is ");
+          lcd.println(score);
+          lcd.setCursor(0, 0);
+
           delay(2000);
+
           lcd.clear();
           lcd.println("Game over!");
+          
           delay(2000);
 
           lcd.setCursor(0, 1);
