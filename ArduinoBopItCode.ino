@@ -20,7 +20,7 @@ Adafruit_MMA8451 mma = Adafruit_MMA8451();
 
 // define the thresholds for the acceleration and the slide switch for those inputs
 int thresholdAcceleration = 10;
-int thresholdSlideSwitch = 10;
+int thresholdSlideSwitch = 100;
 
 // pick a random song
 
