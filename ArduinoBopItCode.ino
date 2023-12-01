@@ -19,7 +19,7 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 Adafruit_MMA8451 mma = Adafruit_MMA8451();
 
 // define the thresholds for the acceleration and the slide switch for those inputs
-int thresholdAcceleration = 10;
+int thresholdAcceleration = 5;
 int thresholdSlideSwitch = 50;
 
 // pick a random song
@@ -412,7 +412,7 @@ void loop() {
         lcd.print(score);
         lcd.setCursor(0, 0);
 
-        delay(2000);
+        delay(1000);
 
         firstTime = 1;
         break;
@@ -452,7 +452,7 @@ void loop() {
           lcd.print(score);
           lcd.setCursor(0, 0);
           
-          delay(2000);
+          delay(1000);
 
           lcd.clear();
           lcd.print("Game over!");
@@ -462,7 +462,7 @@ void loop() {
           lcd.print(score);
           lcd.setCursor(0, 0);
 
-          delay(2000);
+          delay(1000);
 
          
 
@@ -484,7 +484,7 @@ void loop() {
 
           score++;
 
-          delay(2000);
+          delay(1000);
 
    
 
@@ -508,7 +508,7 @@ void loop() {
           lcd.setCursor(0, 0);
 
 
-          delay(2000);
+          delay(1000);
 
           lcd.clear();
           lcd.print("Game over!");
@@ -518,7 +518,7 @@ void loop() {
           lcd.print(score);
           lcd.setCursor(0, 0);
 
-          delay(2000);
+          delay(1000);
 
    
 
@@ -541,7 +541,7 @@ void loop() {
           lcd.print(score);
           lcd.setCursor(0, 0);
 
-          delay(2000);
+          delay(1000);
 
           lcd.clear();
           
@@ -571,7 +571,7 @@ void loop() {
           lcd.print(score);
           lcd.setCursor(0, 0);
 
-          delay(2000);
+          delay(1000);
 
           lcd.clear();
           lcd.print("Game over!");
@@ -581,7 +581,7 @@ void loop() {
           lcd.print(score);
           lcd.setCursor(0, 0);
           
-          delay(2000);
+          delay(1000);
 
           
 
@@ -605,7 +605,7 @@ void loop() {
           lcd.print(score);
           lcd.setCursor(0, 0);
 
-          delay(2000);
+          delay(1000);
 
           lcd.clear();
           
@@ -688,7 +688,7 @@ void loop() {
       // if the game is continuing to the next iteration of the loop, decrease the time interval
       // for the next instruction, so the time interval that the user has to react gets shorter and shorter
       // as the game progresses, the player inputted the correct inputs, and the player gets a higher and higher score
-      timeInterval -= 10;
+      timeInterval -= 20;
 
     }
   }
