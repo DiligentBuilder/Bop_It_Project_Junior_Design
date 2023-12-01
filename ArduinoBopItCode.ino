@@ -256,6 +256,7 @@ void loop() {
         lcd.clear();
         // Serial.print("Press it!");
         lcd.print("Press it!");
+        tone(1, NOTE_C4, 1000);
 
         lcd.setCursor(0, 1);
         lcd.print("Your score is ");
@@ -267,6 +268,7 @@ void loop() {
         lcd.clear();
         // Serial.print("Slide it!");
         lcd.print("Slide it!");
+        tone(1, NOTE_E4, 1000);
 
         lcd.setCursor(0, 1);
         lcd.print("Your score is ");
@@ -278,6 +280,7 @@ void loop() {
         lcd.clear();
         // Serial.print("Spin it!");
         lcd.print("Spin it!");
+        tone(1, NOTE_G4, 1000);
 
         lcd.setCursor(0, 1);
         lcd.print("Your score is ");
