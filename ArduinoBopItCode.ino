@@ -3,6 +3,8 @@
 #define NOTE_E4  330
 #define NOTE_G4  392
 
+#define NOTE_FS2 93
+
 #include <SD.h> // need to include the SD library
 //#define SD_ChipSelectPin 4 //connect pin 4 of arduino to cs pin of sd card
 //#include <TMRpcm.h> //Arduino library for asynchronous playback of PCM/WAV files
@@ -446,6 +448,7 @@ void loop() {
           
           lcd.clear();
           lcd.print("Incorrect input!");
+          tone(1, NOTE_FS2, 1000);
 
           lcd.setCursor(0, 1);
           lcd.print("Your score is ");
@@ -501,6 +504,7 @@ void loop() {
           lcd.clear();
 
           lcd.print("Incorrect input!");
+          tone(1, NOTE_FS2, 1000);
 
           lcd.setCursor(0, 1);
           lcd.print("Your score is ");
@@ -565,6 +569,7 @@ void loop() {
           lcd.clear();
 
           lcd.print("Incorrect input!");
+          tone(1, NOTE_FS2, 1000);
 
           lcd.setCursor(0, 1);
           lcd.print("Your score is ");
